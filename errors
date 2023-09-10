@@ -1,0 +1,44 @@
+Question 2:
+Experiment with Unix tools to analyze the MBTA Commuter Rail schedule data file by doing:
+
+    ln -s ~dce-lib113/sched.errs sched
+
+    This version of the file contains several errors. These are not factual errors such as
+    incorrect arrival time. Instead they are data entry errors such as incorrect tag names
+    or bad data format. See how many errors you can find in this file. Create a plain text
+    file called errors that lists all the errors you find. Also in the errors files,
+    describe what tools, procedures, and/or commands you used to find the errors.
+
+Tools/Commands used: - cat:
+used to output file for viewing and getting a general
+sense of the format - less:
+same as cat, but outputs less text at a time, which makes
+it easier to look over without being overwhelmed
+
+    - grep:
+    	used to extract strings from text
+
+    - cut:
+    	cut out portions of a string from text using delimiters
+
+Errors or issues observed:
+
+    - based on the following command:
+    		“cat sched | cut -d";" -f1 | less”
+    	it appears that the the “TR=num” column is supposed to be ordered from least to greatest,
+    	but there seems to be portions that are not properly arranged.
+
+    - based on the following command:
+    		“cat sched | cut -d”;” -f3”
+    	it appears that data was misentered, as there is a line that accidentally combines
+    	the schedule and the time, e.g. “day=suTI=15:06”
+
+    - based on the following command:
+    		“cat sched | cut -d”;” -f5”
+    	The format “stn=name” was not followed for one of the
+    	entries, i.e “Line=franklin”
+
+    - based on the following command:
+    		“cat sched | cut -d”;” -f6”
+    	The format “Line=name” was erroneously typed as “zn=2” for
+    	one of the entries
